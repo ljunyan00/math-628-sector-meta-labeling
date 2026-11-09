@@ -1,0 +1,36 @@
+{
+  "stage": 1,
+  "status": "implemented_and_run",
+  "generated_at": "2026-11-03T15:28:42.409112-05:00",
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "yfinance": "1.8.0",
+    "matplotlib": "3.11.2",
+    "pytest": "9.2.0"
+  },
+  "config_sha256": "78cfb73c933ec041bf0e2dd03ad3dc22f1f27de270aa5784536fab9376e0b710",
+  "price_sessions_per_ticker": 5285,
+  "sample_feature_rows": 45297,
+  "development_events": 5038,
+  "incomplete_development_events": 8,
+  "executed_development_trades": 2160,
+  "missing_event_feature_values": 0,
+  "final_test_labels_generated": false,
+  "vix_max_source_age_calendar_days": 5,
+  "input_checksums": {
+    "XLB.csv": "c5d605d85ef0d198d4f2a23b70cd12120f0f5a52f0cc493621141674c8b96c63",
+    "XLE.csv": "b9f67857416f79df055e91ea3fb720295b9fdf246f0433b6bcbbbee191fa3c8d",
+    "XLF.csv": "910b724bf860c9f73ffd2d5736f13f2fb895446104588bed42adbfecdd82d754",
+    "XLI.csv": "70de3301d9dcd2627a906c9f28b56effb0dae2d51183a832540010942186196b",
+    "XLK.csv": "0c1fb5b8aee06dc718e8328f22a4ab2f644f3521315aaf5da4a43176403313d5",
+    "XLP.csv": "07b4bd09349c296e5a1c0edceef45e2f61ff221ea74e03c9c5348c33e8cba0a6",
+    "XLU.csv": "e84969f77f0be5b22d895333bcacf35ababc9ce95618ec4e52993bc6dadb6974",
+    "XLV.csv": "ad07803a06f846d7d0c543ad944ace315521bedaecae01506de1b5f5c2956651",
+    "XLY.csv": "2e7b345b4cd6f03310154429144bb9de8f698a4e285e872db09ae123cf77b7d8",
+    "SPY.csv": "d8f44222b2bfd4c06d6b767824a1cf9ee2e806c6ebcbb56a0e8f28a646720a42",
+    "VIXCLS.csv": "bdafc91d312c0cdf11da351c50763f191aac0fac7b6e883069eb88c9528c722b",
+    "F-F_Research_Data_Factors_weekly.csv": "142a135b1709e24133d9f6cfb57c2ad0cdcf190425389b4773c4cc75216ecda2"
+  }
+}

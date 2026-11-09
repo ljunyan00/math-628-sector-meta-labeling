@@ -1,0 +1,21 @@
+{
+  "sectors": ["XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY"],
+  "market": "SPY",
+  "download_start": "2004-01-01",
+  "sample_start": "2005-01-01",
+  "end_exclusive": "2025-01-01",
+  "development_end_exclusive": "2022-01-01",
+  "initial_train_end": "2015-01-01",
+  "validation_years": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+  "test_start": "2022-01-01",
+  "ewm_span": 30,
+  "cusum_multiplier": 2.0,
+  "holding_sessions": 10,
+  "boundary_gap_sessions": 11,
+  "cost_bps_per_side": 5,
+  "cost_sensitivity_bps": [0, 5, 10, 20],
+  "probability_grid": [0.40, 0.45, 0.50, 0.55, 0.60, 0.65],
+  "minimum_candidate_coverage": 0.20,
+  "vix_cutoff_grid": [20, 25, 30, 35],
+  "seed": 628
+}
