@@ -10,6 +10,8 @@ Math 628 research on whether the recent return patterns of a U.S. sector ETF and
 
 The [final report](reports/Final_Report.md), [report PDF](reports/delivery/Math_628_Final_Research_Report.pdf), [PowerPoint](reports/delivery/Math_628_Final_Presentation.pptx) and [30-minute speaker notes](reports/Final_Presentation_Notes.md) cover the research and classroom presentation. The [Stage 1 progress report](reports/Stage_1_Progress_Report.md) documents the original data and backtest diagnostics. The [frozen-run results](reports/CNN_Research_Report.md) provide calibration, portfolio, cost and factor tables.
 
+The [technical review and development revision](reports/Technical_Review_and_Revision.md) documents forecast and backtest limitations in the original design. The revision tests signed return maps, shrinkage toward the training prior, a net-return model and annual decision cutoffs fitted from earlier predictions.
+
 The English report, its figure, small derived summary tables, input checksums and a saved test result are included in `reports/`. Raw vendor datasets and the local Python environment are excluded from version control. Published figures and tables describe the saved Stage 1 run; downloading a newer vendor data vintage may change reproduced values.
 
 ## Run
@@ -39,6 +41,13 @@ PYTHONPATH=src .venv/bin/python -m sector_meta.final_review
 The development command saves a frozen specification in `output/cnn/` with input checksums, model settings, thresholds and package versions. The holdout command checks that specification and writes the English report and aggregate results to `reports/`. Detailed predictions and daily portfolio returns remain under `output/cnn/`.
 
 The final review checks the frozen source and data hashes, reconstructs the labeled opportunities, reconciles the saved scores and portfolio execution, and writes paired log-loss intervals and matched candidate comparisons to `reports/final/`. The matched comparisons are retrospective diagnostics at 323 accepted candidates per model. The frozen cutoffs continue to define the primary trading results.
+
+After `cnn-develop`, run the revision separately. It reuses baseline development predictions and computes all new scores before 2022. Its summary tables are in `reports/revision/`.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m sector_meta.cli cnn-revise
+PYTHONPATH=src .venv/bin/python -m sector_meta.revision_figure
+```
 
 If a macOS Apple Silicon run exits during XGBoost fitting after importing PyTorch, point the dynamic loader at the OpenMP library bundled with the PyTorch wheel for the experiment commands. For the tested Python 3.12 virtual environment, run `export DYLD_FALLBACK_LIBRARY_PATH="$PWD/.venv/lib/python3.12/site-packages/torch/lib"` before running development and holdout evaluation.
 

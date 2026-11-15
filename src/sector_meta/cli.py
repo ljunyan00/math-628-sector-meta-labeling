@@ -9,7 +9,7 @@ from .data import acquire
 
 def main():
     parser = argparse.ArgumentParser(description="Math 628 sector ETF research")
-    parser.add_argument("command", choices=["download", "stage1", "cnn-visualize", "cnn-develop", "cnn-test"])
+    parser.add_argument("command", choices=["download", "stage1", "cnn-visualize", "cnn-develop", "cnn-test", "cnn-revise"])
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--config", type=Path, default=None)
     parser.add_argument("--cnn-config", type=Path, default=None)
@@ -32,6 +32,9 @@ def main():
         if args.command == "cnn-visualize":
             from .cnn_viz import create_input_figure
             create_input_figure(root, prices, calendar, vix, cfg, spec)
+        elif args.command == "cnn-revise":
+            from .cnn_revision import run_revision
+            run_revision(root, prices, calendar, vix, cfg, spec, manifest)
         else:
             from .cnn_experiment import develop, evaluate
             command = develop if args.command == "cnn-develop" else evaluate
