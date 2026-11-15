@@ -1,12 +1,12 @@
 # Learning When to Stay Out
 
-Python implementation of the Math 628 proposal on regime-aware meta-labeling for U.S. sector ETF momentum.
+Math 628 research on whether the recent return patterns of a U.S. sector ETF and its peers improve selection of profitable momentum trades. The revised experiment compares a two-dimensional return map CNN with a temporal CNN and tabular benchmarks. See the [research plan](docs/cnn_research_plan.md).
 
 ## Delivery stages
 
 1. **Stage 1 (implemented):** data acquisition/provenance, coverage audit, causal features, CUSUM events, triple-barrier labels, shared sleeve accounting, purged annual splits, development baseline diagnostics and an English progress report.
-2. **Stage 2 (pending):** Logistic Regression, Random Forest, XGBoost; feature ablations; fold-local preprocessing; probability/VIX threshold selection.
-3. **Stage 3 (pending):** frozen 2022-2024 evaluation, participation controls, uncertainty, factor attribution and final report.
+2. **Stage 2:** causal 20-session return windows and visualizations, then chronological comparisons of logistic regression, XGBoost, a temporal CNN and a return map CNN.
+3. **Stage 3:** frozen 2022-2024 evaluation with participation controls, uncertainty, cost sensitivity, factor attribution and an English report.
 
 Read [the Stage 1 progress report](reports/Stage_1_Progress_Report.md) for measured results and limitations. Stage 1 creates development labels only; final-test outcomes remain unevaluated.
 
@@ -21,10 +21,23 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 PYTHONPATH=src .venv/bin/python -m sector_meta.cli download --factors /path/to/F-F_Research_Data_Factors_weekly.csv
 PYTHONPATH=src .venv/bin/python -m sector_meta.cli stage1
+PYTHONPATH=src .venv/bin/python -m sector_meta.cli cnn-visualize
 .venv/bin/python -m pytest -q
 ```
 
-The `--factors` argument is optional for downloading prices/VIX; supply the course-local weekly file to prepare fixed-vintage attribution inputs. Once acquired, the `stage1` command is offline. For an editable install and a `sector-research` executable, use `.venv/bin/python -m pip install -e '.[test]'` instead. Stage 2 dependencies are declared separately under the `models` extra; training is not implemented yet.
+The `--factors` argument is optional for downloading prices and VIX. Supply the course-local weekly file to prepare fixed-vintage attribution inputs. After acquisition, the remaining commands run offline. Python 3.12 was used for the saved runs.
+
+To run the revised experiment, install the model dependencies before running development and holdout evaluation in sequence. On macOS, the XGBoost wheel may require the OpenMP runtime (`brew install libomp`). See the [XGBoost installation guide](https://xgboost.readthedocs.io/en/stable/install.html).
+
+```bash
+.venv/bin/python -m pip install -e '.[models]'
+PYTHONPATH=src .venv/bin/python -m sector_meta.cli cnn-develop
+PYTHONPATH=src .venv/bin/python -m sector_meta.cli cnn-test
+```
+
+The development command saves a frozen specification in `output/cnn/` with input checksums, model settings, thresholds and package versions. The holdout command checks that specification and writes the English report and aggregate results to `reports/`. Detailed predictions and daily portfolio returns remain under `output/cnn/`.
+
+If a macOS Apple Silicon run exits during XGBoost fitting after importing PyTorch, point the dynamic loader at the OpenMP library bundled with the PyTorch wheel for the experiment commands. For the tested Python 3.12 virtual environment, run `export DYLD_FALLBACK_LIBRARY_PATH="$PWD/.venv/lib/python3.12/site-packages/torch/lib"` before running development and holdout evaluation.
 
 `download` uses cached data after checking their checksums. `--refresh` explicitly downloads a new vintage and replaces cached files; archive the previous data and manifest first. Source connectivity failures stop acquisition; the program never replaces real data with synthetic data. Tests use deterministic synthetic fixtures solely to verify mechanics.
 
@@ -33,6 +46,10 @@ The `--factors` argument is optional for downloading prices/VIX; supply the cour
 | Path | Purpose |
 | --- | --- |
 | `config/stage1.json` | Frozen research conventions and predeclared threshold grids |
+| `config/cnn.json` | Revised input, training, participation and uncertainty settings |
+| `src/sector_meta/sequence_data.py` | Past-only target and peer return windows and two-dimensional maps |
+| `src/sector_meta/cnn_models.py` | Tabular baselines, temporal CNN and return map CNN |
+| `src/sector_meta/cnn_experiment.py` | Development forecasts, frozen holdout and report |
 | `src/sector_meta/data.py` | Yahoo/FRED acquisition, checksums, input audit and weekly factor parser |
 | `src/sector_meta/features.py` | Predictor construction and model feature whitelists |
 | `src/sector_meta/events.py` | CUSUM and shared hypothetical trade execution |

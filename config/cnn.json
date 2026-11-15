@@ -1,0 +1,13 @@
+{
+  "window_sessions": 20,
+  "standardized_return_clip": 8.0,
+  "cnn_seeds": [628, 629, 630],
+  "cnn_epochs": 20,
+  "cnn_batch_size": 128,
+  "cnn_learning_rate": 0.001,
+  "cnn_weight_decay": 0.001,
+  "target_candidate_coverage": 0.30,
+  "random_draws": 64,
+  "bootstrap_draws": 1000,
+  "bootstrap_block_sessions": 20
+}
