@@ -1,0 +1,122 @@
+{
+  "provenance": {
+    "stage1_config": {
+      "sectors": [
+        "XLB",
+        "XLE",
+        "XLF",
+        "XLI",
+        "XLK",
+        "XLP",
+        "XLU",
+        "XLV",
+        "XLY"
+      ],
+      "market": "SPY",
+      "download_start": "2004-01-01",
+      "sample_start": "2005-01-01",
+      "end_exclusive": "2025-01-01",
+      "development_end_exclusive": "2022-01-01",
+      "initial_train_end": "2015-01-01",
+      "validation_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "test_start": "2022-01-01",
+      "ewm_span": 30,
+      "cusum_multiplier": 2.0,
+      "holding_sessions": 10,
+      "boundary_gap_sessions": 11,
+      "cost_bps_per_side": 5,
+      "cost_sensitivity_bps": [
+        0,
+        5,
+        10,
+        20
+      ],
+      "probability_grid": [
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65
+      ],
+      "minimum_candidate_coverage": 0.2,
+      "vix_cutoff_grid": [
+        20,
+        25,
+        30,
+        35
+      ],
+      "seed": 628
+    },
+    "cnn_config": {
+      "window_sessions": 20,
+      "standardized_return_clip": 8.0,
+      "cnn_seeds": [
+        628,
+        629,
+        630
+      ],
+      "cnn_epochs": 20,
+      "cnn_batch_size": 128,
+      "cnn_learning_rate": 0.001,
+      "cnn_weight_decay": 0.001,
+      "target_candidate_coverage": 0.3,
+      "random_draws": 64,
+      "bootstrap_draws": 1000,
+      "bootstrap_block_sessions": 20
+    },
+    "input_sha256": {
+      "XLB.csv": "c5d605d85ef0d198d4f2a23b70cd12120f0f5a52f0cc493621141674c8b96c63",
+      "XLE.csv": "b9f67857416f79df055e91ea3fb720295b9fdf246f0433b6bcbbbee191fa3c8d",
+      "XLF.csv": "910b724bf860c9f73ffd2d5736f13f2fb895446104588bed42adbfecdd82d754",
+      "XLI.csv": "70de3301d9dcd2627a906c9f28b56effb0dae2d51183a832540010942186196b",
+      "XLK.csv": "0c1fb5b8aee06dc718e8328f22a4ab2f644f3521315aaf5da4a43176403313d5",
+      "XLP.csv": "07b4bd09349c296e5a1c0edceef45e2f61ff221ea74e03c9c5348c33e8cba0a6",
+      "XLU.csv": "e84969f77f0be5b22d895333bcacf35ababc9ce95618ec4e52993bc6dadb6974",
+      "XLV.csv": "ad07803a06f846d7d0c543ad944ace315521bedaecae01506de1b5f5c2956651",
+      "XLY.csv": "2e7b345b4cd6f03310154429144bb9de8f698a4e285e872db09ae123cf77b7d8",
+      "SPY.csv": "d8f44222b2bfd4c06d6b767824a1cf9ee2e806c6ebcbb56a0e8f28a646720a42",
+      "VIXCLS.csv": "bdafc91d312c0cdf11da351c50763f191aac0fac7b6e883069eb88c9528c722b",
+      "F-F_Research_Data_Factors_weekly.csv": "142a135b1709e24133d9f6cfb57c2ad0cdcf190425389b4773c4cc75216ecda2"
+    },
+    "code_sha256": {
+      "sequence_data.py": "6a7ca8b8a4a3045534370564420dd67dba965e8515455d3c5caa5f8b05f5afc4",
+      "cnn_models.py": "4c1d77a88cc9950c5eab840a49e7acc1feec13a60caedd333d2c20e3ae262eeb",
+      "cnn_experiment.py": "858b287d49af0ece8494e6d31d0199c7e2ea195ceb9e03ee00de3c1670d9e939",
+      "features.py": "3ac36eb3be3f681096f9468a84725f7a41b46629e5e860aa5444dac319b247ab",
+      "events.py": "e0f463df9efbe5f391343e0446b38e85780b523408c3f1853cb72f98adcfc7c6",
+      "splits.py": "e2062378eeb8b620420f249db39ffb54ff75393dae4572f6c40c3af165f08a86",
+      "backtest.py": "6df260aa35efb9ef550347d42db2386658607fd2dc6ffbd8ba7ed0b043ad555d",
+      "data.py": "bfe881bde6cbad0b15f50ef5d295cdcdceb48bedd4506b6e297e1998d656cda6"
+    },
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "torch": "2.15.0",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "statsmodels": "0.15.0"
+    }
+  },
+  "probability_thresholds": {
+    "logistic": 0.5560613836443503,
+    "xgboost": 0.5448243618011475,
+    "cnn_1d": 0.5472129583358765,
+    "cnn_2d": 0.5450748801231384
+  },
+  "development_acceptance": {
+    "logistic": 0.30035514967021815,
+    "xgboost": 0.30035514967021815,
+    "cnn_1d": 0.30035514967021815,
+    "cnn_2d": 0.30035514967021815
+  },
+  "vix_cutoff": 35.0
+}

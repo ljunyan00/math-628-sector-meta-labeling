@@ -5,10 +5,10 @@ Math 628 research on whether the recent return patterns of a U.S. sector ETF and
 ## Delivery stages
 
 1. **Stage 1 (implemented):** data acquisition/provenance, coverage audit, causal features, CUSUM events, triple-barrier labels, shared sleeve accounting, purged annual splits, development baseline diagnostics and an English progress report.
-2. **Stage 2:** causal 20-session return windows and visualizations, then chronological comparisons of logistic regression, XGBoost, a temporal CNN and a return map CNN.
-3. **Stage 3:** frozen 2022-2024 evaluation with participation controls, uncertainty, cost sensitivity, factor attribution and an English report.
+2. **Stage 2 (completed):** causal 20-session return windows and visualizations, followed by chronological comparisons of logistic regression, XGBoost, a temporal CNN and a return map CNN.
+3. **Stage 3 (completed):** frozen 2022–2024 evaluation with participation controls, uncertainty, cost sensitivity, factor attribution and an [English research report](reports/CNN_Research_Report.md).
 
-Read [the Stage 1 progress report](reports/Stage_1_Progress_Report.md) for measured results and limitations. Stage 1 creates development labels only; final-test outcomes remain unevaluated.
+Read the [Stage 1 progress report](reports/Stage_1_Progress_Report.md) for the original data and backtest diagnostics. The revised research report covers the evaluated holdout and explains why the observed 2D CNN gains are inconclusive.
 
 The English report, its figure, small derived summary tables, input checksums and a saved test result are included in `reports/`. Raw vendor datasets and the local Python environment are excluded from version control. Published figures and tables describe the saved Stage 1 run; downloading a newer vendor data vintage may change reproduced values.
 
