@@ -1,0 +1,4 @@
+comparison,cnn_2d_minus_reference,lower_95,upper_95
+cnn_1d,-0.00159885,-0.01201539,0.00965106
+xgboost,0.00820799,-0.00358806,0.02021774
+training_prior,0.01360623,-0.00223603,0.03287334
